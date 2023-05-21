@@ -1,0 +1,33 @@
+.login-page {
+    background-color: #952a1b;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    color: #263238;
+    padding: 20px;
+    font-size: 18px;
+    box-shadow:  -5px 10px 20px #bcc0c49f;
+    border-radius: 8px;
+}
+
+.login-logo img {
+    width: 300px;
+    height: 300px;
+}
+
+
+.login-inputs input{
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+}

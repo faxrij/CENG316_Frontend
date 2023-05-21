@@ -1,14 +1,14 @@
 import './App.css';
-import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/pages/Home';
+import Login from './components/pages/Login';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
         <Routes>
-          <Route path='/' exact />
+          <Route path='/' exact Component={Login} />
         </Routes>
       </Router>
     </div>
