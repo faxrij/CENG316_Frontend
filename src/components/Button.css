@@ -12,7 +12,7 @@
 
 .btn--primary {
     background-color: var(--primary);
-    color: #242424;
+    color: #952a1b;
     border: 1px solid var(--primary);
 }
 
@@ -22,6 +22,12 @@
     padding: 8px 20px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
+}
+
+.btn--red {
+    background-color: #952a1b;
+    color: #fff;
+    border: 1px solid #952a1b;
 }
 
 .btn--medium {
