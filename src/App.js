@@ -1,18 +1,26 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/pages/Home';
+import "./App.css";
+import Announcement from "./components/Announcement";
+import CreateElectionPage from "./components/CreateElectionPage";
+import Elections from "./components/Elections";
+import Navbar from "./components/Navbar";
 import Login from './components/pages/Login';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
+	return (
+		<div className="App">
+			<Router>
+				<Navbar />
+				<Routes>
+					<Route path="/" exact />
           <Route path='/' element={<Login />} />
-        </Routes>
-      </Router>
-    </div>
-  );
+					<Route path="/announcements" element={<Announcement />} />
+					<Route path="/election" element={<Elections />} />
+					<Route path="/create-election" element={<CreateElectionPage />} />
+				</Routes>
+			</Router>
+		</div>
+	);
 }
 
 export default App;

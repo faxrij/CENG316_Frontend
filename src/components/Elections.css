@@ -1,0 +1,103 @@
+.elections-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+  }
+  
+  .elections-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .election-card {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .election-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .election-description {
+    margin-bottom: 10px;
+  }
+  
+  .election-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .election-date {
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+  
+  .election-location {
+    margin-bottom: 5px;
+  }
+  
+  .vote-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .vote-button:hover {
+    background-color: #0056b3;
+  }
+  .create-election-button {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-decoration: none; 
+    display: inline-block; 
+  }
+  
+  .create-election-button:hover {
+    background-color: #1e7e34;
+  }
+
+  .election-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .edit-button {
+    padding: 8px 16px;
+    background-color: #c9bf30;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .delete-button {
+    padding: 8px 16px;
+    background-color: #3dc954;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    background-color: #e0a800;
+  }
