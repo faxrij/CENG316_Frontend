@@ -20,8 +20,15 @@ class ElectionService {
 		}
 	}
 
-	getElections() {
-		// Logic for retrieving election data
+	async getElections() {
+		try {
+			const response = await fetch("https://api.example.com/elections");
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			console.log(error);
+			throw new Error("Failed to fetch elections data.");
+		}
 	}
 
 	// Other methods for handling election operations

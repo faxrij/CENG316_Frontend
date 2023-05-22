@@ -101,3 +101,17 @@
   .delete-button:hover {
     background-color: #e0a800;
   }
+
+  .loading-message {
+    text-align: center;
+    margin: 20px;
+    font-weight: bold;
+  }
+  
+  .error-message {
+    text-align: center;
+    margin: 20px;
+    color: #ff0000;
+    font-weight: bold;
+  }
+  
