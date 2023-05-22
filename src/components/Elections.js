@@ -50,7 +50,7 @@ import {
               <div className="election-details">
                 <p className="election-date">Start Date: {election.startDate}</p>
                 <p className="election-date">End Date: {election.endDate}</p>
-                <p className="election-location">Departments: {election.departments}</p>
+                <p className="election-location">Departments: {election.department}</p>
               </div>
               <button className="vote-button" onClick={() => handleVote(election.name)}>
                 Vote
