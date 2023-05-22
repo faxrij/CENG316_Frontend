@@ -3,6 +3,10 @@
     margin: 0 auto;
     padding: 20px;
   }
+
+  .form-wrapper {
+    margin-top: 20px; /* Add this line */
+  }
   
   h1 {
     text-align: center;
@@ -20,7 +24,7 @@
   
   .label-group label {
     margin-right: 10px;
-  }
+  }  
   
   input[type='text'],
   textarea,

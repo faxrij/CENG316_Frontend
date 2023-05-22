@@ -83,62 +83,64 @@ const CreateElectionPage = () => {
 	return (
 		<div className="create-election-page">
 			<h1>Create Election</h1>
-			<form onSubmit={handleCreateElection}>
-				<div className="form-group">
-					<label htmlFor="name">Name:</label>
-					<input
-						type="text"
-						id="name"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						required
-					/>
-				</div>
-				<div className="form-group">
-					<div className="label-group">
-						<label htmlFor="department">Department:</label>
-						<select
-							id="department"
-							value={department}
-							onChange={(e) => setDepartment(e.target.value)}
+			<div className="form-wrapper">
+				<form onSubmit={handleCreateElection}>
+					<div className="form-group">
+						<label htmlFor="name">Name:</label>
+						<input
+							type="text"
+							id="name"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
 							required
-						>
-							<option value="">Select department</option>
-							{departmentsData.map((department) => (
-								<option key={department.id} value={department.id}>
-									{department.name}
-								</option>
-							))}
-						</select>
+						/>
 					</div>
-				</div>
+					<div className="form-group">
+						<div className="label-group">
+							<label htmlFor="department">Department:</label>
+							<select
+								id="department"
+								value={department}
+								onChange={(e) => setDepartment(e.target.value)}
+								required
+							>
+								<option value="">Select department</option>
+								{departmentsData.map((department) => (
+									<option key={department.id} value={department.id}>
+										{department.name}
+									</option>
+								))}
+							</select>
+						</div>
+					</div>
 
-				<div className="form-group">
-					<label htmlFor="startDate">Start Date:</label>
-					<DatePicker
-						id="startDate"
-						selected={startDate}
-						onChange={handleStartDateChange}
-						dateFormat="yyyy-MM-dd"
-						placeholderText="Select start date"
-						minDate={today}
-						required
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="endDate">End Date:</label>
-					<DatePicker
-						id="endDate"
-						selected={endDate}
-						onChange={handleEndDateChange}
-						dateFormat="yyyy-MM-dd"
-						placeholderText="Select end date"
-						minDate={startDate || today}
-						required
-					/>
-				</div>
-				<button type="submit">Create</button>
-			</form>
+					<div className="form-group">
+						<label htmlFor="startDate">Start Date:</label>
+						<DatePicker
+							id="startDate"
+							selected={startDate}
+							onChange={handleStartDateChange}
+							dateFormat="yyyy-MM-dd"
+							placeholderText="Select start date"
+							minDate={today}
+							required
+						/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="endDate">End Date:</label>
+						<DatePicker
+							id="endDate"
+							selected={endDate}
+							onChange={handleEndDateChange}
+							dateFormat="yyyy-MM-dd"
+							placeholderText="Select end date"
+							minDate={startDate || today}
+							required
+						/>
+					</div>
+					<button type="submit">Create</button>
+				</form>
+			</div>
 		</div>
 	);
 };
