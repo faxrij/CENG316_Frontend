@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import "./Elections.css";
-import { getElectionsData } from "../mocks/mockElections"; //
-import ConfirmationModal from "./ConfirmationModal";
+import "../Elections.css";
+import { getElectionsData } from "../../mocks/mockElections"; //
+import ConfirmationModal from "../ConfirmationModal";
 import { Link, Switch, Route, Routes } from "react-router-dom";
 
-import ElectionService from './ElectionService';
+import ElectionService from '../ElectionService';
 
 import {
 	handleVote,
 	handleCreateElection,
 	handleEditElection,
 	handleDeleteElection,
-} from "./ElectionActions";
+} from "../ElectionActions";
 
 import CreateElectionPage from "./CreateElectionPage"; // Import the CreateElectionPage component
 
 const Elections = () => {
-	// const electionsData = getElectionsData();
   const [electionsData, setElectionsData] = useState([]);
   const electionService = new ElectionService();
 
@@ -30,7 +29,7 @@ const Elections = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await electionService.getElections();
+        const data = await getElectionsData();
         setElectionsData(data);
         setIsLoading(false);
       } catch (error) {

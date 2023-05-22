@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import Modal from './Modal';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../components/AuthContext';
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -13,6 +13,8 @@ const Navbar = () => {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const { logout } = useAuth(); // Get the logout function from AuthContext
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -33,14 +35,15 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logoutHandler =() => {
-    navigate('/sign-in')
+    logout();
+    navigate('/')
   }
 
   return (
     <div>
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+          <Link to="/home" className="navbar-logo" onClick={closeMobileMenu}>
             <img
               src="https://ceng.iyte.edu.tr/wp-content/uploads/sites/124/2017/11/iztech-logo-1.png"
               alt="iyte logo"
@@ -52,7 +55,7 @@ const Navbar = () => {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/home" className="nav-links" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>

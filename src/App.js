@@ -1,41 +1,53 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import Announcement from './components/Announcement';
-import Elections from './components/Elections';
-import CreateElectionPage from './components/CreateElectionPage';
-import Login from './components/pages/Login';
-import { AuthProvider } from './components/AuthContext';
+import React from "react";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useLocation,
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/pages/Home";
+import Announcement from "./components/pages/Announcement";
+import Elections from "./components/pages/Elections";
+import CreateElectionPage from "./components/pages/CreateElectionPage";
+import Login from "./components/pages/Login";
+import { AuthProvider, useAuth } from "./components/AuthContext";
 
 const App = () => {
-  return (
-    <div className="App">
-      <Router>
-        <AuthProvider>
-          <RouteWrapper /> {/* Render the RouteWrapper component */}
-        </AuthProvider>
-      </Router>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Router>
+				<AuthProvider>
+					<RouteWrapper />
+				</AuthProvider>
+			</Router>
+		</div>
+	);
 };
 
 const RouteWrapper = () => {
-  const location = useLocation();
-  const isLoginPage = location.pathname === '/sign-in';
+	const { isAuthenticated } = useAuth();
+	const location = useLocation();
 
-  return (
-    <>
-      {!isLoginPage && <Navbar />}
-      <Routes>
-        <Route path="/sign-in" element={<Login />} />
-        <Route path="/" element={<HeroSection />} />
-        <Route path="/announcements" element={<Announcement />} />
-        <Route path="/elections" element={<Elections />} />
-        <Route path="/create-election" element={<CreateElectionPage />} />
-      </Routes>
-    </>
-  );
+	const shouldShowNavbar = location.pathname !== "/";
+
+	if (!isAuthenticated && location.pathname !== "/") {
+		window.location.href = "/"; // Redirect to login page if not authenticated
+		return null;
+	}
+
+	return (
+		<>
+			{shouldShowNavbar && <Navbar />}
+			<Routes>
+				<Route path="/" element={<Login />} />
+				<Route path="/home" element={<Home />} />
+				<Route path="/announcements" element={<Announcement />} />
+				<Route path="/elections" element={<Elections />} />
+				<Route path="/create-election" element={<CreateElectionPage />} />
+			</Routes>
+		</>
+	);
 };
 
 export default App;
