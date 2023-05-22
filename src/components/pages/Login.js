@@ -1,19 +1,18 @@
 import React, { useState, useContext } from 'react';
 import '../../App.css';
 import { Button } from '../Button';
-import './Login.css';
+import '../Login.css';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../AuthContext';
+import { useAuth } from '../AuthContext';
 
 
 const Login = () => {
-  const { login } = useContext(AuthContext); // Get the login function from AuthContext
+  const { login } = useAuth(); // Get the login function and isAuthenticated state from AuthContext
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     login();
-    // window.location.href = '/';
 
     try {
       const username = document.getElementById('username').value;
@@ -40,7 +39,7 @@ const Login = () => {
         // Set the authentication state and store the token
         // setAuthenticated(true);
         // localStorage.setItem('token', token);
-        navigate('/');
+        navigate('/home');
       } 
   //     // else {
   //     //   console.error('Login failed:', response.statusText);

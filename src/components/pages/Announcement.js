@@ -1,6 +1,6 @@
 import React from 'react';
-import './Announcement.css';
-import mockAnnouncements from '../mocks/mockAnnouncements'; // Import the mockAnnouncements data
+import '../Announcement.css';
+import mockAnnouncements from '../../mocks/mockAnnouncements'; // Import the mockAnnouncements data
 
 const Announcement = () => {
     const announcements = mockAnnouncements();
