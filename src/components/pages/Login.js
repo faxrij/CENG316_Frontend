@@ -1,51 +1,49 @@
-import React, { useState, useContext } from 'react';
-import '../../App.css';
-import { Button } from '../Button';
-import '../Login.css';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
-
+import React, { useState } from "react";
+import "../../App.css";
+import { Button } from "../Button";
+import "../Login.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 const Login = () => {
   const { login } = useAuth(); // Get the login function and isAuthenticated state from AuthContext
-
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  const handleServerError = (message) => {
+    setError(message);
+  };
 
   const handleLogin = async () => {
-    login();
-
     try {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      console.log(username);
-      console.log(password);
+      const userName = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-      // Make the API request to authenticate the user
-      // Replace 'your-login-api-url' with your actual login API URL
-      // const response = await fetch('your-login-api-url', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ username, password }),
-      // });
+      const response = await fetch("http://164.90.217.39:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userName, password }),
+      });
 
-      // if (response.ok) {
-      if (true) {
-        console.log("ENTERED");
-
-        // const token = await response.json();
+      if (response.ok) {
+        const token = await response.json();
 
         // Set the authentication state and store the token
-        // setAuthenticated(true);
-        // localStorage.setItem('token', token);
-        navigate('/home');
-      } 
-  //     // else {
-  //     //   console.error('Login failed:', response.statusText);
-  //     // }
+        localStorage.setItem("token", token);
+        login();
+        navigate("/home");
+      } else {
+        if (response.status === 500) {
+          handleServerError("Incorrect username or password.");
+        } else {
+          handleServerError("An error occurred while logging in.");
+        }
+      }
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
+      handleServerError("An error occurred while logging in.");
     }
   };
 
@@ -59,13 +57,35 @@ const Login = () => {
           />
         </div>
         <p className="login-info">
-          To login, you must use your IYTE OBS username and password.
+          To log in, please use your IYTE OBS username and password.
         </p>
         <div className="login-inputs">
-          <input type="text" id="username" placeholder="username" />
-          <input type="password" id="password" placeholder="password" />
+          <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            className="login-input"
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            className="login-input"
+          />
         </div>
-        <Button buttonStyle='btn--red' onClick={handleLogin}>Login</Button>
+        <Button buttonStyle="btn--red" onClick={handleLogin}>
+          Login
+        </Button>
+
+        {/* Display the error modal or notification */}
+        {error && (
+          <div className="error-modal">
+            <p className="error-message">{error}</p>
+            <button className="close-button" onClick={() => setError(null)}>
+              Close
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
