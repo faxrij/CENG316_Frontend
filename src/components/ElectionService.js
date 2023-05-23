@@ -1,12 +1,20 @@
 class ElectionService {
-	static async createElection(electionData) {
+	async createElection(electionData) {
 		try {
-			const response = await fetch("https://api.example.com/elections", {
+			const { name, startDate, endDate, departmentId } = electionData; 
+			const formattedData = {
+				name,
+				startDate: new Date(startDate).toISOString(),
+				endDate: new Date(endDate).toISOString(),
+				departmentId,
+			};
+
+			const response = await fetch("http://164.90.217.39:5000/api/election/department", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(electionData),
+				body: JSON.stringify(formattedData),
 			});
 
 			if (response.ok) {
@@ -20,17 +28,32 @@ class ElectionService {
 		}
 	}
 
+
 	async getElections() {
 		try {
-			const response = await fetch("https://api.example.com/elections");
-			const data = await response.json();
-			return data;
+		  const response = await fetch("http://164.90.217.39:5000/api/election/department");
+		  const data = await response.json();
+	  
+		  // Format the date strings
+		  const formattedData = data.data.map((election) => {
+			const startDate = new Date(election.startDate).toLocaleDateString();
+			const endDate = new Date(election.endDate).toLocaleDateString();
+	  
+			return {
+			  ...election,
+			  startDate,
+			  endDate,
+			};
+		  });
+	  
+		  console.log(formattedData);
+		  return formattedData;
 		} catch (error) {
-			console.log(error);
-			throw new Error("Failed to fetch elections data.");
+		  console.log(error);
+		  throw new Error("Failed to fetch elections data.");
 		}
-	}
-
+	  }
+	  
 	// Other methods for handling election operations
 }
 

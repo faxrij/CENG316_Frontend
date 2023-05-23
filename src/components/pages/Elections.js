@@ -29,7 +29,7 @@ const Elections = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getElectionsData();
+        const data = await electionService.getElections();
         setElectionsData(data);
         setIsLoading(false);
       } catch (error) {
@@ -49,6 +49,8 @@ const Elections = () => {
     return <div className="error-message">Error: {error.message}</div>;
   }
   
+  // Check the user role here (replace "student" with the actual role property)
+  const userRole = localStorage.getItem('userRole');
 
 	const handleConfirmDelete = () => {
 		console.log(`Deleting election: ${selectedElection}`);
@@ -71,21 +73,22 @@ const Elections = () => {
 	return (
 		<div className="elections-container">
 			<h1 className="elections-heading">Elections</h1>
-			<div className="elections-actions">
-				<Link to="/create-election" className="create-election-button">
-					Create Election
-				</Link>
-			</div>
+			{userRole === "Student" && ( // Only render the Create Election button for non-student roles
+				<div className="elections-actions">
+					<Link to="/create-election" className="create-election-button">
+						Create Election
+					</Link>
+				</div>
+			)}
 			<div className="elections-list">
 				{electionsData.map((election, index) => (
 					<div key={index} className="election-card">
 						<h2 className="election-title">{election.name}</h2>
-						{/* <p className="election-description">{election.description}</p> */}
 						<div className="election-details">
 							<p className="election-date">Start Date: {election.startDate}</p>
 							<p className="election-date">End Date: {election.endDate}</p>
 							<p className="election-location">
-								Department: {election.department}
+								Department: {election.departmentName}
 							</p>
 						</div>
 						<button
@@ -94,18 +97,22 @@ const Elections = () => {
 						>
 							Vote
 						</button>
-						<button
-							className="edit-button"
-							onClick={() => handleEditElection(election.name)}
-						>
-							Edit
-						</button>
-						<button
-							className="delete-button"
-							onClick={() => handleDeleteElection(election.name)}
-						>
-							Delete
-						</button>
+						{userRole === "Admin" && ( // Only render the Edit and Delete buttons for Admin roles
+							<>
+								<button
+									className="edit-button"
+									onClick={() => handleEditElection(election.name)}
+								>
+									Edit
+								</button>
+								<button
+									className="delete-button"
+									onClick={() => handleDeleteElection(election.name)}
+								>
+									Delete
+								</button>
+							</>
+						)}
 					</div>
 				))}
 			</div>

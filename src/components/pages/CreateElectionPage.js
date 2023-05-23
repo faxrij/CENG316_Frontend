@@ -3,11 +3,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../CreateElectionPage.css";
 import ElectionService from "../ElectionService";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const CreateElectionPage = () => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
-	const [department, setDepartment] = useState("");
+	const [departmentId, setDepartmentId] = useState("");
 	const [departmentsData, setDepartmentsData] = useState([]);
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
@@ -19,9 +23,9 @@ const CreateElectionPage = () => {
 
 	const fetchDepartments = async () => {
 		try {
-			const response = await fetch("YOUR_API_ENDPOINT"); // Replace with your API endpoint
+			const response = await fetch("http://164.90.217.39:5000/api/department"); // Replace with your API endpoint
 			const data = await response.json();
-			setDepartmentsData(data);
+			setDepartmentsData(data.data);
 		} catch (error) {
 			console.error("Error fetching departments:", error);
 		}
@@ -43,43 +47,46 @@ const CreateElectionPage = () => {
 
 	const today = new Date();
 	const electionService = new ElectionService();
-
+	const navigate = useNavigate();
+	
 	const handleCreateElection = (e) => {
 		e.preventDefault();
-		// Handle creating the election with the form data
 		console.log("Creating election...");
 		console.log("Name:", name);
-		console.log("Department:", department);
+		console.log("Department:", departmentId);
 		console.log("Start Date:", startDate);
 		console.log("End Date:", endDate);
-
+	  
 		try {
-			const newElection = electionService.createElection({
-				name,
-				description,
-				department,
-				startDate,
-				endDate,
-			});
-			console.log("New Election:", newElection);
-			// Reset the form inputs
-			setName("");
-			setDescription("");
-			setDepartment("");
-			setStartDate(null);
-			setEndDate(null);
+		  // Assuming `electionService.createElection` returns the newly created election
+		  const newElection = electionService.createElection({
+			name,
+			startDate,
+			endDate,
+			departmentId,
+		  });
+		  console.log("New Election:", newElection);
+	  
+		  // Display success message
+		  toast.success("Election created successfully!");
+	  
+		  setTimeout(() => {
+			navigate("/elections");
+		  }, 2000);
+	
+		  // Reset the form inputs
+		  setName("");
+		  setDescription("");
+		  setDepartmentId("");
+		  setStartDate(null);
+		  setEndDate(null);
 		} catch (error) {
-			console.error("Error creating election:", error);
+		  console.error("Error creating election:", error);
+		  // Display error message
+		  toast.error("Failed to create election. Please try again.");
 		}
-
-		// Reset the form inputs
-		setName("");
-		setDescription("");
-		setDepartment("");
-		setStartDate(null);
-		setEndDate(null);
-	};
-
+	  };
+	  
 	return (
 		<div className="create-election-page">
 			<h1>Create Election</h1>
@@ -100,8 +107,8 @@ const CreateElectionPage = () => {
 							<label htmlFor="department">Department:</label>
 							<select
 								id="department"
-								value={department}
-								onChange={(e) => setDepartment(e.target.value)}
+								value={departmentId}
+								onChange={(e) => setDepartmentId(e.target.value)}
 								required
 							>
 								<option value="">Select department</option>
