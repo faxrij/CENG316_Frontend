@@ -2,6 +2,7 @@ import '../Announcement.css';
 import mockAnnouncements from '../../mocks/mockAnnouncements'; // Import the mockAnnouncements data
 import React, { useState } from 'react';
 import '../Announcement.css';
+
 import { Link } from 'react-router-dom';
 import { Button } from '../Button';
 import '../Button.css';
