@@ -9,6 +9,7 @@ import Login from "./components/pages/Login";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import VotingPage from "./components/pages/VotingPage";
 
 const App = () => {
   return (
@@ -29,10 +30,10 @@ const RouteWrapper = () => {
 
   const shouldShowNavbar = location.pathname !== "/";
 
-  if (!isAuthenticated && location.pathname !== "/") {
-    window.location.href = "/"; // Redirect to login page if not authenticated
-    return null;
-  }
+  // if (!isAuthenticated && location.pathname !== "/") {
+  //   window.location.href = "/"; // Redirect to login page if not authenticated
+  //   return null;
+  // }
 
   return (
     <>
@@ -42,6 +43,7 @@ const RouteWrapper = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/announcements" element={<Announcement />} />
         <Route path="/elections" element={<Elections />} />
+        <Route path="/vote" element={<VotingPage />} />
         <Route path="/create-election" element={<CreateElectionPage />} />
       </Routes>
     </>

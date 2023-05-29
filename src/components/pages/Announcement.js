@@ -36,7 +36,7 @@ const Announcement = () => {
         Announcements
         <span className="create-announcement-button-wrapper">
           <Button
-            className="create-announcement-button"
+            buttonStyle='btn--red'
             onClick={() => setShowCreatePopup(true)}
           >
             Create Announcement

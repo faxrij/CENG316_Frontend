@@ -73,7 +73,7 @@ const Elections = () => {
 	return (
 		<div className="elections-container">
 			<h1 className="elections-heading">Elections</h1>
-			{userRole === "Student" && ( // Only render the Create Election button for non-student roles
+			{userRole === "Admin" && ( // Only render the Create Election button for non-student roles
 				<div className="elections-actions">
 					<Link to="/create-election" className="create-election-button">
 						Create Election

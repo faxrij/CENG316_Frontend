@@ -1,0 +1,40 @@
+.vote-container {
+    color: #263238;
+    /* background-color: #f2f2f2; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    margin: 20px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+.vote-candidate {
+    display:flex;
+    width: 80%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.vote-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
+}
+
+.vote-item label {
+    font-size: 20px;
+}
+
+
+.vote-item input {
+    cursor: pointer;
+}
