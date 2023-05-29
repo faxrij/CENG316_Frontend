@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../Elections.css";
 import { getElectionsData } from "../../mocks/mockElections"; //
 import ConfirmationModal from "../ConfirmationModal";
-import { Link, Switch, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 
 import ElectionService from '../ElectionService';
 
