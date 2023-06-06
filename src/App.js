@@ -30,10 +30,10 @@ const RouteWrapper = () => {
 
   const shouldShowNavbar = location.pathname !== "/";
 
-  // if (!isAuthenticated && location.pathname !== "/") {
-  //   window.location.href = "/"; // Redirect to login page if not authenticated
-  //   return null;
-  // }
+  if (!isAuthenticated && location.pathname !== "/") {
+    window.location.href = "/"; // Redirect to login page if not authenticated
+    return null;
+  }
 
   return (
     <>

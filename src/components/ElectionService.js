@@ -31,10 +31,13 @@ class ElectionService {
 
 	async getElections() {
 		try {
-		  const response = await fetch("http://164.90.217.39:5000/api/election/department");
+			const departmentName = localStorage.getItem('departmentName');
+			const apiUrl = `http://164.90.217.39:5000/api/election/department/${encodeURIComponent(departmentName)}`;
+			
+			const response = await fetch(apiUrl);
+			
 		  const data = await response.json();
 	  
-		  // Format the date strings
 		  const formattedData = data.data.map((election) => {
 			const startDate = new Date(election.startDate).toLocaleDateString();
 			const endDate = new Date(election.endDate).toLocaleDateString();
@@ -52,9 +55,8 @@ class ElectionService {
 		  console.log(error);
 		  throw new Error("Failed to fetch elections data.");
 		}
-	  }
+	}
 	  
-	// Other methods for handling election operations
 }
 
 export default ElectionService;

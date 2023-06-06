@@ -1,9 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "../Button";
 import '../VotingPage.css';
 
 const VotingPage = () => {
   const [selectedCandidate, setSelectedCandidate] = useState('');
+  const [candidates, setCandidates] = useState([]);
+
+  useEffect(() => {
+    const fetchCandidates = async () => {
+      try {
+        const response = await fetch("http://164.90.217.39:5000/api/candidate");
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+        const data = await response.json();
+        if (data && data.data && Array.isArray(data.data)) {
+          setCandidates(data.data);
+        } else {
+          setCandidates([]);
+        }
+      } catch (error) {
+        console.error('Error fetching candidates:', error);
+        setCandidates([]);
+      }
+    };
+    
+    fetchCandidates();
+  }, []);
 
   const handleCandidateSelection = (candidate) => {
     setSelectedCandidate(candidate);
@@ -21,53 +44,38 @@ const VotingPage = () => {
   return (
     <div className='vote-container'>
       <h1>Department Elections</h1>
-
+  
       <div className='vote-candidate'>
-        <div className='vote-item'>
-          <img src='student4.png'></img>
-          <label htmlFor="candidate1">Candidate 1</label>
-          <input
-            type="radio"
-            id="candidate1"
-            name="candidate"
-            value="Candidate 1"
-            checked={selectedCandidate === 'Candidate 1'}
-            onChange={() => handleCandidateSelection('Candidate 1')}
-          />
-        </div>
-
-        <div className='vote-item'>
-          <img src='student2.png'></img>
-          <label htmlFor="candidate2">Candidate 2</label>
-          <input
-            type="radio"
-            id="candidate2"
-            name="candidate"
-            value="Candidate 2"
-            checked={selectedCandidate === 'Candidate 2'}
-            onChange={() => handleCandidateSelection('Candidate 2')}
-          />
-        </div>
-
-        <div className='vote-item'>
-          <img src='student3.png'></img>
-          <label htmlFor="candidate3">Candidate 3</label>
-          <input
-            type="radio"
-            id="candidate3"
-            name="candidate"
-            value="Candidate 3"
-            checked={selectedCandidate === 'Candidate 3'}
-            onChange={() => handleCandidateSelection('Candidate 3')}
-          />
-        </div>
+        {candidates.length > 0 ? (
+          candidates.map((candidate, index) => (
+            <div className='vote-item' key={index}>
+              {/* <img src={candidate.image} alt={`Candidate ${index + 1}`} /> */}
+              <img src='student4.png' /> 
+              <label htmlFor={`candidate${index + 1}`}>{candidate.description}</label>
+              <input
+                type="radio"
+                id={`candidate${index + 1}`}
+                name="candidate"
+                value={candidate.description}
+                checked={selectedCandidate === candidate.description}
+                onChange={() => handleCandidateSelection(candidate.description)}
+              />
+            </div>
+          ))
+        ) : (
+          <div>No candidates available</div>
+        )}
       </div>
       
       <Button 
-      buttonStyle='btn--red'
-      onClick={handleSubmitVote}>Submit Vote</Button>
+        buttonStyle='btn--red'
+        onClick={handleSubmitVote}
+      >
+        Submit Vote
+      </Button>
     </div>
   );
+  
 };
 
 export default VotingPage;

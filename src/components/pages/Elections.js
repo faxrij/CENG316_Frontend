@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../Elections.css";
-import { getElectionsData } from "../../mocks/mockElections";
+// import { getElectionsData } from "../../mocks/mockElections";
 import ConfirmationModal from "../ConfirmationModal";
 import { Link, Route, Routes, useNavigate } from "react-router-dom"; // Import useNavigate
 
@@ -29,7 +29,7 @@ const Elections = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getElectionsData();
+        const data = await electionService.getElections();
         setElectionsData(data);
         setIsLoading(false);
       } catch (error) {
