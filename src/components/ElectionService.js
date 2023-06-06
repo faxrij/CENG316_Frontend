@@ -31,6 +31,7 @@ class ElectionService {
 
 	async getElections() {
 		try {
+			// const userRole = localStorage.getItem('userRole');
 			const departmentName = localStorage.getItem('departmentName');
 			const apiUrl = `http://164.90.217.39:5000/api/election/department/${encodeURIComponent(departmentName)}`;
 			

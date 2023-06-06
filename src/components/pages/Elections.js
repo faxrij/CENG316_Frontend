@@ -96,12 +96,14 @@ const Elections = () => {
                 Department: {election.departmentName}
               </p>
             </div>
-            <button
-              className="vote-button"
-              onClick={() => handleVote(election.name)}
-            >
-              Vote
-            </button>
+            {userRole === "Student" && (
+              <button
+                className="vote-button"
+                onClick={() => handleVote(election.name)}
+              >
+                Vote
+              </button>
+            )}
             {userRole === "Admin" && (
               <>
                 <button
