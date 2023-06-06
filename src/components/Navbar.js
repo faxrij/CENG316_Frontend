@@ -79,7 +79,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link
-                to="/logout"
+                to="/"
                 className="nav-links-mobile"
                 onClick={handleLogout}
               >
