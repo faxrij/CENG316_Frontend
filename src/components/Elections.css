@@ -18,6 +18,17 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
+  .vote-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  
+  
   .election-title {
     font-size: 24px;
     margin-bottom: 10px;
@@ -41,16 +52,7 @@
   .election-location {
     margin-bottom: 5px;
   }
-  
-  .vote-button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+    
   .vote-button:hover {
     background-color: #0056b3;
   }
