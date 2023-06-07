@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "../Elections.css";
-// import { getElectionsData } from "../../mocks/mockElections";
 import ConfirmationModal from "../ConfirmationModal";
 import { Link, Route, Routes, useNavigate } from "react-router-dom"; // Import useNavigate
 
@@ -52,10 +51,10 @@ const Elections = () => {
   const userRole = localStorage.getItem('userRole');
   
 
-  const handleVote = (electionName) => {
-    console.log(`Vote button clicked for ${electionName}`);
-    navigate('/vote'); // Navigate to "/vote" route
-  };
+  const handleVote = (electionId) => {
+    console.log(`Vote button clicked for election with id: ${electionId}`);
+    navigate(`/vote/${electionId}`);
+  };  
 
   const handleConfirmDelete = () => {
     console.log(`Deleting election: ${selectedElection}`);
@@ -96,10 +95,10 @@ const Elections = () => {
                 Department: {election.departmentName}
               </p>
             </div>
-            {userRole === "Student" && (
+            {userRole !== "Admin" && (
               <button
                 className="vote-button"
-                onClick={() => handleVote(election.name)}
+                onClick={() => handleVote(election.id)}
               >
                 Vote
               </button>

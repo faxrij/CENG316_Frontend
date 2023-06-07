@@ -44,7 +44,7 @@ const RouteWrapper = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/announcements" element={<Announcement />} />
         <Route path="/elections" element={<Elections />} />
-        <Route path="/vote" element={<VotingPage />} />
+        <Route path="/vote/:id" element={<VotingPage />} />
         <Route path="/create-election" element={<CreateElectionPage />} />
         <Route path="/become-candidate" element={<BecomeCandidate />} />
       </Routes>
