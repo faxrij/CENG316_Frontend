@@ -10,6 +10,7 @@ import { AuthProvider, useAuth } from "./components/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VotingPage from "./components/pages/VotingPage";
+import BecomeCandidate from "./components/pages/BecomeCandidate";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const RouteWrapper = () => {
         <Route path="/elections" element={<Elections />} />
         <Route path="/vote" element={<VotingPage />} />
         <Route path="/create-election" element={<CreateElectionPage />} />
+        <Route path="/become-candidate" element={<BecomeCandidate />} />
       </Routes>
     </>
   );

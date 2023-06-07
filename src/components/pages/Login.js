@@ -19,7 +19,7 @@ const Login = () => {
 		setIsLoading(true);
 		setTimeout(() => {
 			navigate("/home");
-		}, 2000); // Delay for 2 seconds (adjust as needed)
+		}, 500); // Delay for 0.5 seconds (adjust as needed)
 	};
 
 	const handleServerError = (message) => {
@@ -47,6 +47,7 @@ const Login = () => {
 				const userRole = data.data.userRole;
 				const departmentName = data.data.departmentName;
 				const year = data.data.year;
+				const userId = data.data.userId;
 
 				// Set the authentication state and store the token
 				localStorage.setItem("token", token);
@@ -55,6 +56,7 @@ const Login = () => {
 				localStorage.setItem("userRole", userRole);
 				localStorage.setItem("departmentName", departmentName);
 				localStorage.setItem("year", year);
+				localStorage.setItem("userId", userId);
 
 				toast.success("Login Successful!");
 

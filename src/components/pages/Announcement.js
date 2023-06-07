@@ -16,10 +16,9 @@ const Announcement = () => {
   const [announcementTitle, setAnnouncementTitle] = useState('');
   const [announcementDescription, setAnnouncementDescription] = useState('');
 
+  const userRole = localStorage.getItem("userRole");
+
   const handleCreateAnnouncement = () => {
-    // Perform the necessary actions for creating the announcement
-    // You can access the selectedDepartment, startDate, and endDate values here
-    // For simplicity, this example only logs the values to the console
     console.log('Title:', announcementTitle);
     console.log('Description:', announcementDescription);
     console.log('Selected Department:', selectedDepartment);
@@ -34,14 +33,13 @@ const Announcement = () => {
     <div className="announcement-container">
       <h1 className="announcement-heading">
         Announcements
-        <span className="create-announcement-button-wrapper">
-          <Button
-            buttonStyle='btn--red'
-            onClick={() => setShowCreatePopup(true)}
-          >
-            Create Announcement
-          </Button>
-        </span>
+        {userRole === 'Admin' && (
+          <span className="create-announcement-button-wrapper">
+            <button className="create-announcement-button" onClick={() => setShowCreatePopup(true)}>
+              Create Announcement
+            </button>
+          </span>
+        )}
       </h1>
       {announcements.map((announcement, index) => (
         <div key={index} className="announcement-card">
