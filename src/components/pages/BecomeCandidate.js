@@ -64,7 +64,7 @@ function BecomeCandidate() {
 	};
 
 	return (
-		<div className="container">
+		<div className="become-candidate-container">
 			<div className="content">
 				<h2>Do you want to become a candidate in the upcoming elections?</h2>
 				<p>

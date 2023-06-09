@@ -1,4 +1,4 @@
-.container {
+.become-candidate-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,7 +68,7 @@
   justify-content: center;
 }
 
-.modal-content {
+.become-candidate-container .modal-content {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
