@@ -111,13 +111,13 @@ const Elections = () => {
                 Vote
               </Button>
             )}
-            {/* {today > new Date(election.endDate) && ( */}
+            {today > new Date(election.endDate) && (
               <Button 
                 onClick={() => handleResult(election.id)}
               >
                 Results
               </Button>
-            {/* )} */}
+            )}
             {userRole === "Admin" && (
               <>
                 <Button
