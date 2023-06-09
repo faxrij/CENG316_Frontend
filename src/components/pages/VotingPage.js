@@ -67,7 +67,7 @@ const VotingPage = () => {
         })
         .catch((error) => {
           console.error("Error submitting vote:", error);
-          toast.error("There was an error submitting your vote. Please try again later.");
+          toast.error("There was an error submitting your vote.", error.error);
         });
     } else {
       alert("You cannot submit your vote without choosing a candidate.");
