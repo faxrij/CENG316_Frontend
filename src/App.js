@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VotingPage from "./components/pages/VotingPage";
 import BecomeCandidate from "./components/pages/BecomeCandidate";
+import ElectionResultPage from "./components/pages/ElectionResultPage";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const RouteWrapper = () => {
         <Route path="/vote/:id" element={<VotingPage />} />
         <Route path="/create-election" element={<CreateElectionPage />} />
         <Route path="/become-candidate" element={<BecomeCandidate />} />
+        <Route path="/election/:id/result" element={<ElectionResultPage />} />
       </Routes>
     </>
   );
