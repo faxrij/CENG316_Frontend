@@ -47,7 +47,7 @@ const Login = () => {
 				const userRole = data.data.userRole;
 				const departmentName = data.data.departmentName;
 				const year = data.data.year;
-				const userId = data.data.userId;
+				const userName = data.data.userName;
 
 				// Set the authentication state and store the token
 				localStorage.setItem("token", token);
@@ -56,7 +56,7 @@ const Login = () => {
 				localStorage.setItem("userRole", userRole);
 				localStorage.setItem("departmentName", departmentName);
 				localStorage.setItem("year", year);
-				localStorage.setItem("userId", userId);
+				localStorage.setItem("userName", userName);
 
 				toast.success("Login Successful!");
 

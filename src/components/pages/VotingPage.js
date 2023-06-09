@@ -9,19 +9,21 @@ const VotingPage = () => {
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const { id: electionId } = useParams();
-  const userId = localStorage.getItem("userId");
+  const userName = localStorage.getItem("userName");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const response = await fetch("http://164.90.217.39:5000/api/candidate");
+        const url = `http://164.90.217.39:5000/api/election/${electionId}/candidate`;
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }
         const data = await response.json();
         if (data && data.data && Array.isArray(data.data)) {
           setCandidates(data.data);
+          console.log(data.data)
         } else {
           setCandidates([]);
         }
@@ -41,10 +43,14 @@ const VotingPage = () => {
   const handleSubmitVote = () => {
     if (selectedCandidate !== "") {
       const voteData = {
-        userId: userId,
-        candidateId: selectedCandidate,
+        voterUserName: userName,
+        candidateUserName: selectedCandidate,
         electionId: electionId,
       };
+      console.log(voteData.voterUserName);
+      console.log(voteData.candidateUserName);
+      console.log(voteData.electionId);
+
 
       fetch("http://164.90.217.39:5000/api/vote", {
         method: "POST",
@@ -84,15 +90,15 @@ const VotingPage = () => {
             <div className="vote-item" key={index}>
               <img src="/student4.png" alt={`Candidate ${index + 1}`} />
               <label htmlFor={`candidate${index + 1}`}>
-                {candidate.description}
+                {candidate.firstName}
               </label>
               <input
                 type="radio"
                 id={`candidate${index + 1}`}
                 name="candidate"
                 value={candidate.description}
-                checked={selectedCandidate === candidate.description}
-                onChange={() => handleCandidateSelection(candidate.description)}
+                checked={selectedCandidate === candidate.firstName}
+                onChange={() => handleCandidateSelection(candidate.firstName)}
               />
             </div>
           ))
