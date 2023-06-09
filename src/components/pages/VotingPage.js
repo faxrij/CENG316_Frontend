@@ -117,7 +117,7 @@ const VotingPage = () => {
           <div className="modal-content success">
             <h3>Success!</h3>
             <p>Your vote has been submitted successfully.</p>
-            <button onClick={closeModal}>Close</button>
+            <Button buttonStyle="btn--red" onClick={closeModal}>Close</Button>
           </div>
         </div>
       )}
