@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../BecomeCandidate.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from '../Button';
 
 function BecomeCandidate() {
 	const [description, setDescription] = useState("");
@@ -64,44 +65,47 @@ function BecomeCandidate() {
 	};
 
 	return (
-		<div>
-			<h2>Do you want to become a candidate in the upcoming elections?</h2>
-			<p>
-				Enter a description explaining your qualifications and reasons for
-				candidacy:
-			</p>
-			<textarea
-				rows={4}
-				cols={50}
-				value={description}
-				onChange={handleDescriptionChange}
-			></textarea>
-			<br />
-			<button onClick={handleCheckCandidacy}>Check for Candidacy</button>
-			{/* Success Modal */}
-			{successModalOpen && (
-				<div className="modal">
-					<div className="modal-content success">
-						<h3>Success!</h3>
-						<p>You will be checked for candidacy.</p>
-						<button onClick={closeSuccessModal}>Close</button>
+		<div className="become-candidate-container">
+			<div className="content">
+				<h2>Do you want to become a candidate in the upcoming elections?</h2>
+				<p>
+					Enter a description explaining your qualifications and reasons for
+					candidacy:
+				</p>
+				<textarea
+					rows={4}
+					cols={50}
+					value={description}
+					onChange={handleDescriptionChange}
+				></textarea>
+				<br />
+				<Button buttonStyle='btn--red' onClick={handleCheckCandidacy}>Check for Candidacy</Button>
+				{/* Success Modal */}
+				{successModalOpen && (
+					<div className="modal">
+						<div className="modal-content success">
+							<h3>Success!</h3>
+							<p>You will be checked for candidacy.</p>
+							<Button buttonStyle='btn--red' onClick={closeSuccessModal}>Close</Button>
+						</div>
 					</div>
-				</div>
-			)}
-			{/* Error Modal */}
-			{errorModalOpen && (
-				<div className="modal">
-					<div className="modal-content error">
-						<h3>Something went wrong!</h3>
-						<p>
-							An error occurred while checking candidacy. Please try again
-							later.
-						</p>
-						<button onClick={closeErrorModal}>Close</button>
+				)}
+				{/* Error Modal */}
+				{errorModalOpen && (
+					<div className="modal">
+						<div className="modal-content error">
+							<h3>Something went wrong!</h3>
+							<p>
+								An error occurred while checking candidacy. Please try again
+								later.
+							</p>
+							<Button buttonStyle='btn--red' onClick={closeErrorModal}>Close</Button>
+						</div>
 					</div>
-				</div>
-			)}
-			<ToastContainer /> {/* Add this line to display toast notifications */}
+				)}
+				<ToastContainer /> {/* Add this line to display toast notifications */}
+			</div>
+			
 		</div>
 	);
 }

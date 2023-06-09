@@ -1,6 +1,4 @@
-/* BecomeCandidate.css */
-
-.container {
+.become-candidate-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,8 +33,12 @@
     border-radius: 4px;
     resize: vertical;
   }
+
+  textarea:focus {
+    outline-color: #0342628e;
+  }
   
-  button {
+  /* button {
     display: block;
     margin: 0 auto;
     background-color: #4caf50;
@@ -51,9 +53,8 @@
   
   button:hover {
     background-color: #45a049;
-  }
+  } */
   
-  /* BecomeCandidate.css */
 
 .modal {
   position: fixed;
@@ -67,11 +68,14 @@
   justify-content: center;
 }
 
-.modal-content {
+.become-candidate-container .modal-content {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .modal-content.success {
@@ -79,19 +83,19 @@
   color: #3c763d;
 }
 
-.modal h3 {
-  margin-top: 0;
+.modal-content.error {
+  color: black;
 }
 
-.modal button {
+/* .modal button {
   padding: 8px 16px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+} */
 
-.modal button:hover {
+/* .modal button:hover {
   background-color: #0056b3;
-}
+} */

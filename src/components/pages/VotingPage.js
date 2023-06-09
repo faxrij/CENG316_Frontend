@@ -110,6 +110,7 @@ const VotingPage = () => {
 
       {/* ToastContainer */}
       <ToastContainer />
+
     </div>
   );
 };
