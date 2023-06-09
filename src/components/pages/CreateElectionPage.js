@@ -6,6 +6,7 @@ import ElectionService from "../ElectionService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from "../Button";
 
 
 const CreateElectionPage = () => {
@@ -145,7 +146,7 @@ const CreateElectionPage = () => {
 							required
 						/>
 					</div>
-					<button type="submit">Create</button>
+					<Button buttonStyle='btn--red' type="submit">Create</Button>
 				</form>
 			</div>
 		</div>

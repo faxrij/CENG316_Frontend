@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import './HeroSection.css';
+import { Button } from './Button.js';
 
 function HeroSection() {
   const name = localStorage.getItem('name');
@@ -18,11 +19,11 @@ function HeroSection() {
         <img src='/student-avatar.png' alt='student image' />
         <div className='hero-info'>
           <div className='hero-role'>{`${userRole}`}</div>
-          <div className='hero-major'>{`${departmentName}`}</div>
+          <div className='hero-major'>Department: {`${departmentName}`}</div>
           <div className='hero-grade'>Year: {`${year}`}</div>
-          {isStudent && (
+          {isStudent && year !== '4' && year !== '1' && (
             <Link to='/become-candidate' className='apply-link'>
-              <button className='apply-button'>Apply For Candidacy</button>
+              <Button buttonSize='btn--large' buttonStyle='btn--red' className='apply-button'>Apply For Candidacy</Button>
             </Link>
           )}
         </div>

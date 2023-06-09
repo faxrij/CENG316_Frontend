@@ -36,7 +36,7 @@
 	font-size: 45px;
 }
 
-.apply-button {
+/* .apply-button {
 	text-decoration: none;
 	margin: auto;
 	background-color: #4caf50;
@@ -51,7 +51,7 @@
 
 .apply-button:hover {
 	background-color: #45a049;
-}
+} */
 .apply-link {
 	text-decoration: none;
 }
