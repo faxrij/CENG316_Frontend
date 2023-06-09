@@ -85,7 +85,10 @@ const Elections = () => {
       {userRole === "Admin" && (
         <div className="elections-actions">
           <Link to="/create-election" className="create-election-button">
-            Create Election
+            <Button 
+              buttonStyle='btn--red'>
+              Create Election
+            </Button>
           </Link>
         </div>
       )}
@@ -118,12 +121,12 @@ const Elections = () => {
             {userRole === "Admin" && (
               <>
                 <Button
+                  buttonStyle='btn--red'
                   onClick={() => handleEditElection(election.name)}
                 >
                   Edit
                 </Button>
                 <Button 
-                  buttonStyle='btn--red'
                   onClick={() => handleDeleteElection(election.name)}
                 >
                   Delete
