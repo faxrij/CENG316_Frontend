@@ -61,8 +61,9 @@ const VotingPage = () => {
           }
           toast.success("Your vote has been submitted successfully.", {
             onClose: () => {
-              navigate("/home");
-            },
+              setTimeout(() => {
+                navigate('/home'); // Navigate to the "/home" page after 1000ms (1 second)
+              }, 1000);            },
           });
         })
         .catch((error) => {
