@@ -96,7 +96,7 @@ const Navbar = () => {
       </nav>
       <Modal show={showModal} onClose={closeModal}>
         <h2>Are you sure you want to exit?</h2>
-        <Button buttonStyle="btn--black" onClick={closeModal}>
+        <Button buttonStyle="btn--primary" onClick={closeModal}>
           Cancel
         </Button>
         <Button

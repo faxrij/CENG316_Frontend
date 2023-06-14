@@ -116,3 +116,65 @@
   color: #ff0000;
   font-weight: bold;
 }
+    margin: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+  }
+  
+  .elections-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .election-card {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .election-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .election-description {
+    margin-bottom: 10px;
+  }
+  
+  .election-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .election-date {
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+  
+  .election-location {
+    margin-bottom: 5px;
+  }
+  
+
+  .election-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .loading-message {
+    text-align: center;
+    margin: 20px;
+    font-weight: bold;
+  }
+  
+  .error-message {
+    text-align: center;
+    margin: 20px;
+    color: #ff0000;
+    font-weight: bold;
+  }
+  

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../Elections.css";
 import ConfirmationModal from "../ConfirmationModal";
 import { Link, Route, Routes, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Button } from "../Button";
 
 import ElectionService from "../ElectionService";
 
