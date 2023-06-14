@@ -1,180 +1,173 @@
 .elections-container {
-  margin: 20px;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
+	margin: 20px;
+	padding: 20px;
+	background-color: #f2f2f2;
+	border-radius: 8px;
 }
 
 .elections-heading {
-  text-align: center;
-  margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .election-card {
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .vote-button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 8px;
-  text-decoration: none; /* Remove underline */
+	padding: 8px 16px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 8px;
+	text-decoration: none; /* Remove underline */
 }
 
 .election-title {
-  font-size: 24px;
-  margin-bottom: 10px;
+	font-size: 24px;
+	margin-bottom: 10px;
 }
 
 .election-description {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .election-details {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .election-date {
-  font-style: italic;
-  margin-bottom: 5px;
+	font-style: italic;
+	margin-bottom: 5px;
 }
 
 .election-location {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .vote-button:hover {
-  background-color: #0056b3;
+	background-color: #0056b3;
 }
 
 .create-election-button {
-  padding: 8px 16px;
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  text-decoration: none;
-  display: inline-block;
+	padding: 8px 16px;
+	background-color: #28a745;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	text-decoration: none;
+	display: inline-block;
 }
 
 .create-election-button:hover {
-  background-color: #1e7e34;
+	background-color: #1e7e34;
 }
 
 .election-actions {
-  display: flex;
-  gap: 8px;
+	display: flex;
+	gap: 8px;
 }
 
 .edit-button {
-  padding: 8px 16px;
-  background-color: #c9bf30;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 8px;
-  margin-left: 8px;
-  text-decoration: none; /* Remove underline */
+	padding: 8px 16px;
+	background-color: #c9bf30;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 8px;
+	margin-left: 8px;
+	text-decoration: none; /* Remove underline */
 }
 
 .delete-button {
-  padding: 8px 16px;
-  background-color: #3dc954;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+	padding: 8px 16px;
+	background-color: #3dc954;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .edit-button:hover,
 .delete-button:hover {
-  background-color: #e0a800;
+	background-color: #e0a800;
 }
 
 .loading-message {
-  text-align: center;
-  margin: 20px;
-  font-weight: bold;
+	text-align: center;
+	margin: 20px;
+	font-weight: bold;
 }
 
 .error-message {
-  text-align: center;
-  margin: 20px;
-  color: #ff0000;
-  font-weight: bold;
+	text-align: center;
+	margin: 20px;
+	color: #ff0000;
+	font-weight: bold;
 }
-    margin: 20px;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 8px;
-  }
-  
-  .elections-heading {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .election-card {
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .election-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .election-description {
-    margin-bottom: 10px;
-  }
-  
-  .election-details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .election-date {
-    font-style: italic;
-    margin-bottom: 5px;
-  }
-  
-  .election-location {
-    margin-bottom: 5px;
-  }
-  
 
-  .election-actions {
-    display: flex;
-    gap: 8px;
-  }
+.elections-heading {
+	text-align: center;
+	margin-bottom: 20px;
+}
 
-  .loading-message {
-    text-align: center;
-    margin: 20px;
-    font-weight: bold;
-  }
-  
-  .error-message {
-    text-align: center;
-    margin: 20px;
-    color: #ff0000;
-    font-weight: bold;
-  }
-  
+.election-card {
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.election-title {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.election-description {
+	margin-bottom: 10px;
+}
+
+.election-details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.election-date {
+	font-style: italic;
+	margin-bottom: 5px;
+}
+
+.election-location {
+	margin-bottom: 5px;
+}
+
+.election-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.loading-message {
+	text-align: center;
+	margin: 20px;
+	font-weight: bold;
+}
+
+.error-message {
+	text-align: center;
+	margin: 20px;
+	color: #ff0000;
+	font-weight: bold;
+}
