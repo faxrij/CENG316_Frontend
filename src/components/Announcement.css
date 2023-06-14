@@ -48,134 +48,24 @@
     justify-content: space-between;
     align-items: center;
   }
-  
-  .create-announcement-button-wrapper {
-    margin-left: auto;
+
+
+  .create-announcement-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
   }
   
-
-/* Styles for the popup overlay */
-.create-announcement-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(3px); /* Apply blur to the background */
-}
-
-/* Styles for the popup content */
-.create-announcement-popup-content {
-  position: relative;
-  max-width: 400px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  /* Adjust row spacing */
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  padding: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-}
-
-/* Styles for the close button */
-.create-announcement-popup-content .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 18px;
-  color: #999;
-  cursor: pointer;
-}
-
-.create-announcement-section {
-  display: flex;
-  align-items: center;
-}
-
-.create-announcement-section label {
-  width: 150px;
-  text-align: right;
-  margin-right: 10px;
-}
-
-.create-announcement-section input[type="date"],
-.create-announcement-section select {
-  /* Existing styles */
-  flex: 1;
-}
-
-.create-announcement-section .select-date-label {
-  /* Additional styles to align "Select Date" text to the left */
-  flex: 1;
-}
-
-.create-announcement-section .calendar-container {
-  /* Additional styles to align calendars to the right */
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1;
-}
-
-.create-announcement-buttons {
-  /* Existing styles */
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-  gap: 10px;
-}
-
-/* Styles to remove blur from the background when popup is not shown */
-.announcement-container:not(.popup-active) {
-  filter: none;
-}
-
-
-
-.create-announcement-section {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.create-announcement-section label {
-  flex: 0 0 150px;
-  text-align: left;
-}
-
-.create-announcement-section input,
-.create-announcement-section textarea,
-.create-announcement-section select {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.create-announcement-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-.create-announcement-buttons button {
-  margin-left: 10px;
-}
+  .create-announcement-button:hover {
+    background-color: #45a049;
+  }
+  
+  .create-announcement-button:active {
+    background-color: #408140;
+  }
+  
