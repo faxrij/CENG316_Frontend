@@ -11,7 +11,6 @@ class ElectionService {
 			const token = localStorage.getItem("token");
 
 			
-
 			const response = await fetch(
 				"http://164.90.217.39:5000/api/election/department",
 				{
