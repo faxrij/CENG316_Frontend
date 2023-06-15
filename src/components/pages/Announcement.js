@@ -17,7 +17,7 @@ const Announcement = () => {
     <div className="announcement-container">
       <h1 className="announcement-heading">
         Announcements
-        {userRole === 'Admin' && (
+        {userRole !== 'Admin' && (
           <span className="create-announcement-button-wrapper">
             <Link to="/announcement" className="create-announcement-button">
               Create Announcement

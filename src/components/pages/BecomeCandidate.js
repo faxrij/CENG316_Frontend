@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../BecomeCandidate.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "../Button";
+import { Button } from '../Button';
 
 function BecomeCandidate() {
 	const [description, setDescription] = useState("");
@@ -39,17 +39,17 @@ function BecomeCandidate() {
 				return response.json();
 			})
 			.then((data) => {
-				console.log("Response:", data);
-				if (data.data === true) {
-					// Candidate created successfully
-					toast.success("You will be checked for candidacy."); // Display success toast
-					setTimeout(() => {
-						localStorage.setItem("userRole", "Candidate"); // Set userRole to "Candidate" in localStorage
-						navigate("/home"); // Navigate to the "/home" page after 1000ms (1 second)
-					}, 1000);
-				}
-			})
-
+        console.log('Response:', data);
+        if (data.data === true) {
+          // Candidate created successfully
+          toast.success('You will be checked for candidacy.'); // Display success toast
+          setTimeout(() => {
+            localStorage.setItem('userRole', 'Candidate'); // Set userRole to "Candidate" in localStorage
+            navigate('/home'); // Navigate to the "/home" page after 1000ms (1 second)
+          }, 1000);
+        }
+      })
+      
 			.catch((error) => {
 				console.error("Error:", error);
 				setErrorModalOpen(true); // Open error modal
@@ -79,18 +79,14 @@ function BecomeCandidate() {
 					onChange={handleDescriptionChange}
 				></textarea>
 				<br />
-				<Button buttonStyle="btn--red" onClick={handleCheckCandidacy}>
-					Check for Candidacy
-				</Button>
+				<Button buttonStyle='btn--red' onClick={handleCheckCandidacy}>Check for Candidacy</Button>
 				{/* Success Modal */}
 				{successModalOpen && (
 					<div className="modal">
 						<div className="modal-content success">
 							<h3>Success!</h3>
 							<p>You will be checked for candidacy.</p>
-							<Button buttonStyle="btn--red" onClick={closeSuccessModal}>
-								Close
-							</Button>
+							<Button buttonStyle='btn--red' onClick={closeSuccessModal}>Close</Button>
 						</div>
 					</div>
 				)}
@@ -103,14 +99,13 @@ function BecomeCandidate() {
 								An error occurred while checking candidacy. Please try again
 								later.
 							</p>
-							<Button buttonStyle="btn--red" onClick={closeErrorModal}>
-								Close
-							</Button>
+							<Button buttonStyle='btn--red' onClick={closeErrorModal}>Close</Button>
 						</div>
 					</div>
 				)}
 				<ToastContainer /> {/* Add this line to display toast notifications */}
 			</div>
+			
 		</div>
 	);
 }

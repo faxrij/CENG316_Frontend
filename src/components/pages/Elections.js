@@ -77,7 +77,7 @@ const Elections = () => {
 	return (
 		<div className="elections-container">
 			<h1 className="elections-heading">Elections</h1>
-			{userRole === "Admin" && (
+			{userRole !== "Admin" && (
 				<div className="elections-actions">
 					<Link to="/create-election" className="create-election-button">
 						Create Election
@@ -103,7 +103,7 @@ const Elections = () => {
 								Vote
 							</button>
 						)}
-						{userRole === "Admin" && (
+						{userRole !== "Admin" && (
 							<>
 								<Link
 									to={`/election/${election.id}`}
