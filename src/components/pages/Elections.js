@@ -51,10 +51,15 @@ const Elections = () => {
   }
 
   const userRole = localStorage.getItem("userRole");
+  const today = new Date();
 
   const handleVote = (electionId) => {
     console.log(`Vote button clicked for election with id: ${electionId}`);
     navigate(`/vote/${electionId}`);
+  };
+
+  const handleResult = (electionId) => {
+    navigate(`/election/${electionId}/result`);
   };
 
   const handleConfirmDelete = async () => {
@@ -116,13 +121,20 @@ const Elections = () => {
                 Department: {election.departmentName}
               </p>
             </div>
-            {userRole !== "Admin" && (
-              <button
-                className="vote-button"
+			{userRole !== "Admin" && today >= new Date(election.startDate) && today <= new Date(election.endDate) && (
+              <Button 
+                buttonStyle='btn--red'
                 onClick={() => handleVote(election.id)}
               >
                 Vote
-              </button>
+              </Button>
+            )}
+            {today > new Date(election.endDate) && (
+              <Button 
+                onClick={() => handleResult(election.id)}
+              >
+                Results
+              </Button>
             )}
             {userRole === "Admin" && (
               <>
