@@ -12,8 +12,6 @@ const Login = () => {
 	const { login } = useAuth(); // Get the login function and isAuthenticated state from AuthContext
 	const navigate = useNavigate();
 	const [error, setError] = useState(null);
-	const [userName, setUsername] = useState('');
-  	const [password, setPassword] = useState('');
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -30,6 +28,8 @@ const Login = () => {
 
 	const handleLogin = async () => {
 		try {
+			const userName = document.getElementById("username").value;
+			const password = document.getElementById("password").value;
 
 			const response = await fetch("http://164.90.217.39:5000/api/auth/login", {
 				method: "POST",

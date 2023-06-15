@@ -3,139 +3,160 @@ import "../Elections.css";
 import ConfirmationModal from "../ConfirmationModal";
 import { Link, Route, Routes, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Button } from "../Button";
+import { toast } from "react-toastify";
 
 import ElectionService from "../ElectionService";
 
 import {
-	handleCreateElection,
-	handleEditElection,
-	handleDeleteElection,
+  handleCreateElection,
+  handleEditElection,
+  handleDeleteElection,
 } from "../ElectionActions";
 
 import CreateElectionPage from "./CreateElectionPage";
 
 const Elections = () => {
-	const [electionsData, setElectionsData] = useState([]);
-	const electionService = new ElectionService();
+  const [electionsData, setElectionsData] = useState([]);
+  const electionService = new ElectionService();
 
-	const [showModal, setShowModal] = useState(false);
-	const [selectedElection, setSelectedElection] = useState(null);
-	const [showCreateElection, setShowCreateElection] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedElection, setSelectedElection] = useState(null);
+  const [showCreateElection, setShowCreateElection] = useState(false);
 
-	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const navigate = useNavigate(); // Add useNavigate hook
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Add useNavigate hook
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const data = await electionService.getElections();
-				setElectionsData(data);
-				setIsLoading(false);
-			} catch (error) {
-				setError(error);
-				setIsLoading(false);
-			}
-		};
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await electionService.getElections();
+        setElectionsData(data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
+    };
 
-		fetchData();
-	}, []);
+    fetchData();
+  }, []);
 
-	if (isLoading) {
-		return <div className="loading-message">Loading...</div>;
-	}
+  if (isLoading) {
+    return <div className="loading-message">Loading...</div>;
+  }
 
-	if (error) {
-		return <div className="error-message">Error: {error.message}</div>;
-	}
+  if (error) {
+    return <div className="error-message">Error: {error.message}</div>;
+  }
 
-	const userRole = localStorage.getItem("userRole");
+  const userRole = localStorage.getItem("userRole");
 
-	const handleVote = (electionId) => {
-		console.log(`Vote button clicked for election with id: ${electionId}`);
-		navigate(`/vote/${electionId}`);
-	};
+  const handleVote = (electionId) => {
+    console.log(`Vote button clicked for election with id: ${electionId}`);
+    navigate(`/vote/${electionId}`);
+  };
 
-	const handleConfirmDelete = () => {
-		console.log(`Deleting election: ${selectedElection}`);
+  const handleConfirmDelete = async () => {
+    try {
+      console.log(selectedElection.id);
+      const response = await fetch(
+        `http://164.90.217.39:5000/api/election/${selectedElection.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Election deleted successfully");
 		setShowModal(false);
-	};
+		navigate('/home'); // Refresh the page
+	} else {
+        toast.error("Failed to delete election");
+      }
+    } catch (error) {
+      console.error("An error occurred while deleting the election:", error);
+      toast.error("An error occurred while deleting the election");
+    }
 
-	const handleCancelDelete = () => {
-		setShowModal(false);
-	};
+    setShowModal(false);
+  };
 
-	const handleDeleteElection = (electionName) => {
-		setShowModal(true);
-		setSelectedElection(electionName);
-	};
+  const handleCancelDelete = () => {
+    setShowModal(false);
+  };
 
-	const handleCreateElection = () => {
-		setShowCreateElection(true);
-	};
+  const handleDeleteElection = (election) => {
+    setShowModal(true);
+    setSelectedElection(election);
+  };
 
-	return (
-		<div className="elections-container">
-			<h1 className="elections-heading">Elections</h1>
-			{userRole === "Admin" && (
-				<div className="elections-actions">
-					<Link to="/create-election" className="create-election-button">
-						Create Election
-					</Link>
-				</div>
-			)}
-			<div className="elections-list">
-				{electionsData.map((election, index) => (
-					<div key={index} className="election-card">
-						<h2 className="election-title">{election.name}</h2>
-						<div className="election-details">
-							<p className="election-date">Start Date: {election.startDate}</p>
-							<p className="election-date">End Date: {election.endDate}</p>
-							<p className="election-location">
-								Department: {election.departmentName}
-							</p>
-						</div>
-						{userRole !== "Admin" && (
-							<button
-								className="vote-button"
-								onClick={() => handleVote(election.id)}
-							>
-								Vote
-							</button>
-						)}
-						{userRole === "Admin" && (
-							<>
-								<Link
-									to={`/election/${election.id}`}
-									state={{ election: election }}
-									className="edit-button"
-								>
-									Edit
-								</Link>
+  const handleCreateElection = () => {
+    setShowCreateElection(true);
+  };
 
-								<button
-									className="delete-button"
-									onClick={() => handleDeleteElection(election.name)}
-								>
-									Delete
-								</button>
-							</>
-						)}
-					</div>
-				))}
-			</div>
-			{showModal && (
-				<ConfirmationModal
-					message={`Are you sure you want to delete the election: ${selectedElection}?`}
-					onConfirm={handleConfirmDelete}
-					onCancel={handleCancelDelete}
-				/>
-			)}
-			<Routes>
-				<Route path="/create-election" component={CreateElectionPage} />
-			</Routes>
-		</div>
-	);
+  return (
+    <div className="elections-container">
+      <h1 className="elections-heading">Elections</h1>
+      {userRole === "Admin" && (
+        <div className="elections-actions">
+          <Link to="/create-election" className="create-election-button">
+            Create Election
+          </Link>
+        </div>
+      )}
+      <div className="elections-list">
+        {electionsData.map((election, index) => (
+          <div key={index} className="election-card">
+            <h2 className="election-title">{election.name}</h2>
+            <div className="election-details">
+              <p className="election-date">Start Date: {election.startDate}</p>
+              <p className="election-date">End Date: {election.endDate}</p>
+              <p className="election-location">
+                Department: {election.departmentName}
+              </p>
+            </div>
+            {userRole !== "Admin" && (
+              <button
+                className="vote-button"
+                onClick={() => handleVote(election.id)}
+              >
+                Vote
+              </button>
+            )}
+            {userRole === "Admin" && (
+              <>
+                <Link
+                  to={`/election/${election.id}`}
+                  state={{ election: election }}
+                  className="edit-button"
+                >
+                  Edit
+                </Link>
+
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeleteElection(election)}
+                >
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+      {showModal && (
+        <ConfirmationModal
+          message={`Are you sure you want to delete the election: ${selectedElection?.name}?`}
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+        />
+      )}
+      <Routes>
+        <Route path="/create-election" component={CreateElectionPage} />
+      </Routes>
+    </div>
+  );
 };
 
 export default Elections;
