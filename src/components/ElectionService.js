@@ -8,13 +8,16 @@ class ElectionService {
 				endDate: new Date(endDate).toISOString(),
 				departmentId,
 			};
+			const token = localStorage.getItem("token");
 
+			
 			const response = await fetch(
 				"http://164.90.217.39:5000/api/election/department",
 				{
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`
 					},
 					body: JSON.stringify(formattedData),
 				}
