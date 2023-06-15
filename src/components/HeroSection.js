@@ -10,7 +10,7 @@ function HeroSection() {
   const userRole = localStorage.getItem('userRole');
   const departmentName = localStorage.getItem('departmentName');
   const year = localStorage.getItem('year');
-
+  console.log(year);
   const isStudent = userRole === 'Student';
 
   return (
@@ -19,8 +19,12 @@ function HeroSection() {
         <img src='/student-avatar.png' alt='student image' />
         <div className='hero-info'>
           <div className='hero-role'>{`${userRole}`}</div>
-          <div className='hero-major'>Department: {`${departmentName}`}</div>
-          <div className='hero-grade'>Year: {`${year}`}</div>
+          {departmentName !== "null" && (
+  <div className='hero-major'>Department: {departmentName}</div>
+)}
+          {year !== "null" && (
+  <div className='hero-grade'>Year: {year}</div>
+)}
           {isStudent && year !== '4' && year !== '1' && (
             <Link to='/become-candidate' className='apply-link'>
               <Button buttonSize='btn--large' buttonStyle='btn--red' className='apply-button'>Apply For Candidacy</Button>

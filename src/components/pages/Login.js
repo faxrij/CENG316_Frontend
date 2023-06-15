@@ -38,7 +38,7 @@ const Login = () => {
 				},
 				body: JSON.stringify({ userName, password }),
 			});
-
+			console.log(response);
 			if (response.ok) {
 				const data = await response.json();
 				const token = data.data.token.accessToken;
