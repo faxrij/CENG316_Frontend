@@ -37,6 +37,7 @@ const Login = () => {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({ userName, password }),
+				setTimeout: 2000
 			});
 			console.log(response);
 			if (response.ok) {
