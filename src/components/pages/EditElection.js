@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../EditElectionPage.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ElectionService from "../ElectionService";
+import "../EditElectionPage.css";
 
 const EditElectionPage = () => {
   const location = useLocation();
@@ -22,7 +24,7 @@ const EditElectionPage = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await fetch("http://164.90.217.39:5000/api/department"); // Replace with your API endpoint
+      const response = await fetch("http://164.90.217.39:5000/api/department");
       const data = await response.json();
       setDepartmentsData(data.data);
     } catch (error) {
@@ -30,7 +32,9 @@ const EditElectionPage = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Find the selected departmentId based on the departmentName
@@ -41,15 +45,39 @@ const EditElectionPage = () => {
 
     // Update the election with the new values
     const updatedElection = {
-      ...election,
       name: name,
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
       departmentId: departmentId,
     };
 
-    // Perform the update operation
-    // ...
+    try {
+      // Perform the update operation by sending a PUT request to the API
+      const response = await fetch(
+        `http://164.90.217.39:5000/api/election/${election.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedElection),
+        }
+      );
+
+      if (response.ok) {
+        // Update was successful
+        toast.success("Election updated successfully");
+        navigate("/elections"); // Navigate back to the elections page
+      } else {
+        // Update failed
+        const errorData = await response.json();
+        const errorMessage = errorData.message || "Failed to update election";
+        toast.error(errorMessage);
+      }
+    } catch (error) {
+      console.error("Failed to update election:", error);
+      toast.error("An error occurred while updating the election");
+    }
 
     // Reset form fields
     setName("");
@@ -71,25 +99,6 @@ const EditElectionPage = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="department">Department:</label>
-          <select
-            id="department"
-            value={departmentName}
-            onChange={(e) => setDepartmentName(e.target.value)}
-            required
-          >
-            <option value="">Select department</option>
-            {departmentsData.map((department) => (
-              <option
-                key={department.id}
-                value={department.name}
-              >
-                {department.name}
-              </option>
-            ))}
-          </select>
         </div>
         <div className="form-group">
           <label htmlFor="startDate">Start Date:</label>
@@ -114,6 +123,8 @@ const EditElectionPage = () => {
         </div>
         <button type="submit">Save Changes</button>
       </form>
+
+      <ToastContainer />
     </div>
   );
 };

@@ -14,9 +14,11 @@ import BecomeCandidate from "./components/pages/BecomeCandidate";
 import EditElectionPage from "./components/pages/EditElection";
 import ElectionResultPage from "./components/pages/ElectionResultPage";
 import CreateAnnouncement from "./components/pages/CreateAnnouncement";
+import { Navigate } from "react-router-dom";
 
 
 const App = () => {
+
   return (
     <div className="App">
       <Router>
@@ -36,8 +38,7 @@ const RouteWrapper = () => {
   const shouldShowNavbar = location.pathname !== "/";
 
   if (!isAuthenticated && location.pathname !== "/") {
-    window.location.href = "/"; // Redirect to login page if not authenticated
-    return null;
+    return <Navigate to="/" replace />; // Use Navigate to navigate to login page
   }
 
   return (
