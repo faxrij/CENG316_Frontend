@@ -1,13 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import mockAnnouncements from '../../mocks/mockAnnouncements';
 import '../Announcement.css';
 
 const Announcement = () => {
-  const announcements = mockAnnouncements();
+  const [announcements, setAnnouncements] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showCreatePopup, setShowCreatePopup] = useState(false);
 
   const userRole = localStorage.getItem("userRole");
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await fetch("http://164.90.217.39:5000/api/announcement");
+        if (response.ok) {
+          const data = await response.json();
+          setAnnouncements(data.data.announcementList);
+        } else {
+          throw new Error("Failed to fetch announcements");
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
+
+  if (isLoading) {
+    return <div className="loading-message">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">Error: {error.message}</div>;
+  }
 
   const handleCreateAnnouncement = () => {
     setShowCreatePopup(false);
@@ -27,11 +56,10 @@ const Announcement = () => {
       </h1>
       {announcements.map((announcement, index) => (
         <div key={index} className="announcement-card">
-          <h2 className="announcement-title">{announcement.title}</h2>
+          <h2 className="announcement-title">{announcement.name}</h2>
           <p className="announcement-description">{announcement.description}</p>
           <div className="announcement-details">
-            <p className="announcement-date">Date: {announcement.date}</p>
-            <p className="announcement-creator">Created by: {announcement.creator}</p>
+            <p className="announcement-creator">Created by: {announcement.createdBy}</p>
           </div>
         </div>
       ))}
