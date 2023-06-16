@@ -1,3 +1,7 @@
+import { API_URL } from './../config';
+
+const serviceUrl = `${API_URL}/election`
+
 class ElectionService {
 	async createElection(electionData) {
 		try {
@@ -12,7 +16,7 @@ class ElectionService {
 
 			
 			const response = await fetch(
-				"http://164.90.217.39:5000/api/election/department",
+				`${serviceUrl}/department`,
 				{
 					method: "POST",
 					headers: {
@@ -39,10 +43,10 @@ class ElectionService {
 			let apiUrl = "";
 
 			if (localStorage.getItem("userRole") === "Admin") {
-				apiUrl = "http://164.90.217.39:5000/api/election/department";
+				apiUrl = `${serviceUrl}/department`;
 			} else {
 				const departmentName = localStorage.getItem("departmentName");
-				apiUrl = `http://164.90.217.39:5000/api/election/department/${encodeURIComponent(
+				apiUrl = `${serviceUrl}/department/${encodeURIComponent(
 					departmentName
 				)}`;
 			}
@@ -72,6 +76,33 @@ class ElectionService {
 		} catch (error) {
 			console.log(error);
 			throw new Error("Failed to fetch elections data.");
+		}
+	}
+
+	async finishElection(electionId) {
+		try {
+			const token = localStorage.getItem("token");
+
+			
+			const response = await fetch(
+				`${serviceUrl}/${electionId}/finish`,
+				{
+					method: "PATCH",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`
+					},
+				}
+			);
+
+			if (response.ok) {
+				const data = await response.json();
+				return data;
+			} else {
+				throw new Error("Failed to finish election");
+			}
+		} catch (error) {
+			throw new Error(`Error: ${error.message}`);
 		}
 	}
 }

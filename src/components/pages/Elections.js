@@ -31,6 +31,7 @@ const Elections = () => {
 		const fetchData = async () => {
 			try {
 				const data = await electionService.getElections();
+				
 				setElectionsData(data);
 				setIsLoading(false);
 			} catch (error) {
@@ -54,8 +55,6 @@ const Elections = () => {
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
 
-	console.log(today);
-	console.log("AAAAAAAAAAAAA");
 
 	const handleVote = (electionId) => {
 		console.log(`Vote button clicked for election with id: ${electionId}`);
@@ -68,7 +67,6 @@ const Elections = () => {
 
 	const handleConfirmDelete = async () => {
 		try {
-			console.log(selectedElection.id);
 			const response = await fetch(
 				`http://164.90.217.39:5000/api/election/${selectedElection.id}`,
 				{
@@ -76,7 +74,7 @@ const Elections = () => {
 				}
 			);
 
-			if (response.ok) {
+			if (response) {
 				toast.success("Election deleted successfully");
 				setShowModal(false);
 				navigate("/home"); // Refresh the page
@@ -86,6 +84,25 @@ const Elections = () => {
 		} catch (error) {
 			console.error("An error occurred while deleting the election:", error);
 			toast.error("An error occurred while deleting the election");
+		}
+
+		setShowModal(false);
+	};
+
+  const handleFinishElection = async (electionId) => {
+		try {
+			const data = await electionService.finishElection(electionId);
+      console.log(data);
+			if (!data.hasError) {
+				toast.success("Election finished successfully");
+				setShowModal(false);
+				navigate("/home"); // Refresh the page
+			} else {
+				toast.error("Failed to finish election");
+			}
+		} catch (error) {
+			console.error("An error occurred while finishing the election:", error);
+			toast.error("An error occurred while finishing the election");
 		}
 
 		setShowModal(false);
@@ -140,9 +157,9 @@ const Elections = () => {
 						)}
 						{userRole === "Admin" && (
 							<>
-								{today <= new Date(election.endDate) && (
+								{today <= new Date(election.endDate) && !election.isFinished && (
 									// Render the Finish button for ongoing elections
-									<Button onClick={() => handleResult(election.id)}>
+									<Button onClick={() => handleFinishElection(election.id)}>
 										Finish
 									</Button>
 								)}
