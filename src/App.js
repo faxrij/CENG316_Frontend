@@ -15,6 +15,7 @@ import EditElectionPage from "./components/pages/EditElection";
 import ElectionResultPage from "./components/pages/ElectionResultPage";
 import CreateAnnouncement from "./components/pages/CreateAnnouncement";
 import { Navigate } from "react-router-dom";
+import Reelection from "./components/pages/Reelection";
 
 
 const App = () => {
@@ -55,6 +56,8 @@ const RouteWrapper = () => {
         <Route path="/election/:id" element={<EditElectionPage />} />
         <Route path="/election/:id/result" element={<ElectionResultPage />} />
         <Route path="/announcement" element={<CreateAnnouncement />} />
+        <Route path="/election/:id/reelection" element={<Reelection />} />
+
       </Routes>
     </>
   );
