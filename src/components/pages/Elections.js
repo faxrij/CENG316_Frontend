@@ -121,7 +121,7 @@ const Elections = () => {
                 Department: {election.departmentName}
               </p>
             </div>
-			{userRole !== "Admin" && today >= new Date(election.startDate) && today <= new Date(election.endDate) && (
+			      {userRole !== "Admin" && today >= new Date(election.startDate) && today <= new Date(election.endDate) && (
               <Button 
                 buttonStyle='btn--red'
                 onClick={() => handleVote(election.id)}
@@ -138,6 +138,13 @@ const Elections = () => {
             )}
             {userRole === "Admin" && (
               <>
+                {today <= new Date(election.endDate) && (
+                <Button 
+                onClick={() => handleResult(election.id)}
+                >
+                Finish
+                </Button>
+                )}
                 <Link
                   to={`/election/${election.id}`}
                   state={{ election: election }}
