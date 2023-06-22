@@ -142,16 +142,16 @@ const Elections = () => {
 								Department: {election.departmentName}
 							</p>
 						</div>
-						{/* {userRole !== "Admin" &&
+						{userRole !== "Admin" &&
 							today >= new Date(election.startDate) &&
-							today <= new Date(election.endDate) && ( */}
+							today <= new Date(election.endDate) && (
 								<Button
 									buttonStyle="btn--red"
 									onClick={() => handleVote(election.id)}
 								>
 									Vote
 								</Button>
-							{/* )} */}
+							)}
 						{today > new Date(election.endDate) && (
 							<Button onClick={() => handleResult(election.id)}>Results</Button>
 						)}
