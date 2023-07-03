@@ -39,7 +39,7 @@
     resize: vertical;
   }
   
-  button[type='submit'] {
+  /* button[type='submit'] {
     display: block;
     width: 100%;
     padding: 10px;
@@ -52,5 +52,9 @@
   
   button[type='submit']:hover {
     background-color: #0056b3;
-  }
+  } */
+
+.create-button {
+  text-align: center;
+}
   

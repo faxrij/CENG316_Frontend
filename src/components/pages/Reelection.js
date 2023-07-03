@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import "../Reelection.css";
+import { Button } from "../Button";
 
 const ReElection = () => {
     const location = useLocation();
@@ -25,9 +27,9 @@ const ReElection = () => {
 	};
 
 	return (
-		<div>
+		<div className="reelection-container">
 			<h1>Re-election</h1>
-			<div>
+			<div className="reelection-date">
 				<label htmlFor="end-date-picker">Select End Date:</label>
 				<DatePicker
 					id="end-date-picker"
@@ -37,7 +39,7 @@ const ReElection = () => {
 					dateFormat="yyyy-MM-dd"
 				/>
 			</div>
-			<button onClick={handleReelection}>Start Re-election</button>
+			<Button buttonStyle="btn--red" onClick={handleReelection}>Start Re-election</Button>
 		</div>
 	);
 };

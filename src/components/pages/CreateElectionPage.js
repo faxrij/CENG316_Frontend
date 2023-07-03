@@ -149,7 +149,9 @@ const CreateElectionPage = () => {
               required
             />
           </div>
-          <Button buttonStyle='btn--red' type="submit">Create</Button>
+          <div className="create-button">
+            <Button buttonStyle='btn--red' type="submit">Create</Button>
+          </div>
         </form>
       </div>
     </div>

@@ -126,8 +126,8 @@ const Elections = () => {
 			<h1 className="elections-heading">Elections</h1>
 			{userRole === "Admin" && (
 				<div className="elections-actions">
-					<Link to="/create-election" className="create-election-button">
-						Create Election
+					<Link to="/create-election">
+						<Button buttonStyle="btn--red">Create Election</Button>
 					</Link>
 				</div>
 			)}
@@ -166,26 +166,23 @@ const Elections = () => {
 								<Link
 									to={`/election/${election.id}`}
 									state={{ election: election }}
-									className="edit-button"
 								>
-									Edit
+									<Button buttonStyle="btn--red">Edit</Button>
 								</Link>
 
-								<button
-									className="delete-button"
+								<Button
 									onClick={() => handleDeleteElection(election)}
 								>
 									Delete
-								</button>
+								</Button>
 
 								<Link
 									to={{
 										pathname: `/election/${election.id}/reelection`,
 										state: { electionName: election.name },
 									}}
-									className="reelection-button"
 								>
-									Re-election
+									<Button buttonStyle="btn--red">Re-election</Button>
 								</Link>
 							</>
 						)}

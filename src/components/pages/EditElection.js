@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ElectionService from "../ElectionService";
 import "../EditElectionPage.css";
+import { Button } from '../Button';
 
 const EditElectionPage = () => {
   const location = useLocation();
@@ -121,7 +122,7 @@ const EditElectionPage = () => {
             required
           />
         </div>
-        <button type="submit">Save Changes</button>
+        <Button buttonStyle="btn--red" type="submit">Save Changes</Button>
       </form>
 
       <ToastContainer />

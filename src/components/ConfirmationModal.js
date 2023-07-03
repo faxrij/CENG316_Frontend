@@ -1,5 +1,6 @@
 import React from "react";
 import "./ConfirmationModal.css";
+import { Button } from './Button';
 
 const ConfirmationModal = ({ message, onConfirm, onCancel }) => {
 	return (
@@ -7,12 +8,12 @@ const ConfirmationModal = ({ message, onConfirm, onCancel }) => {
 			<div className="modal-content">
 				<p className="modal-message">{message}</p>
 				<div className="modal-buttons">
-					<button className="modal-confirm-button" onClick={onConfirm}>
+					<Button buttonStyle="btn--red" className="modal-confirm-button" onClick={onConfirm}>
 						Confirm
-					</button>
-					<button className="modal-cancel-button" onClick={onCancel}>
+					</Button>
+					<Button className="modal-cancel-button" onClick={onCancel}>
 						Cancel
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>

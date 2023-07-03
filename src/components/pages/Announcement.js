@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../Announcement.css';
+import { Button } from '../Button';
 
 const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -81,7 +82,7 @@ const Announcement = () => {
         {userRole === 'Admin' && (
           <span className="create-announcement-button-wrapper">
             <Link to="/announcement" className="create-announcement-button">
-              Create Announcement
+              <Button buttonStyle="btn--red">Create Announcement</Button>
             </Link>
           </span>
         )}
@@ -93,12 +94,11 @@ const Announcement = () => {
           <div className="announcement-details">
             <p className="announcement-creator">Created by: {announcement.createdBy}</p>
             {userRole === 'Admin' && (
-              <button
-                className="delete-announcement-button"
+              <Button
                 onClick={() => handleDeleteAnnouncement(announcement.id)}
               >
                 Delete
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -111,8 +111,8 @@ const Announcement = () => {
             <h3>Confirmation</h3>
             <p>Are you sure you want to delete this announcement?</p>
             <div className="modal-actions">
-              <button onClick={confirmDeleteAnnouncement}>Yes</button>
-              <button onClick={() => setShowDeleteConfirmation(false)}>No</button>
+              <Button onClick={confirmDeleteAnnouncement}>Yes</Button>
+              <Button buttonStyle="btn--red" onClick={() => setShowDeleteConfirmation(false)}>No</Button>
             </div>
           </div>
         </div>

@@ -50,7 +50,7 @@
   }
 
 
-  .create-announcement-button {
+  /* .create-announcement-button {
     padding: 10px 20px;
     background-color: #4caf50;
     color: white;
@@ -67,9 +67,9 @@
   
   .create-announcement-button:active {
     background-color: #408140;
-  }
+  } */
   
-  .delete-announcement-button {
+  /* .delete-announcement-button {
     background-color: #f44336;
     color: #ffffff;
     padding: 8px 16px;
@@ -81,4 +81,4 @@
   
   .delete-announcement-button:hover {
     background-color: #d32f2f;
-  }
+  } */
