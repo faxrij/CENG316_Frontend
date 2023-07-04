@@ -157,12 +157,12 @@ const Elections = () => {
 						)}
 						{userRole === "Admin" && (
 							<>
-								{today <= new Date(election.endDate) && !election.isFinished && (
+								{/* {today <= new Date(election.endDate) && !election.isFinished && (
 									// Render the Finish button for ongoing elections
 									<Button onClick={() => handleFinishElection(election.id)}>
 										Finish
 									</Button>
-								)}
+								)} */}
 								<Link
 									to={`/election/${election.id}`}
 									state={{ election: election }}
