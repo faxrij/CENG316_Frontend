@@ -3,7 +3,7 @@ import { API_URL } from './../config';
 
 export const withdrawCandidate = async (userName, token) => {
   try {
-    const response = await fetch(`${API_URL}/${userName}/withdraw`, {
+    const response = await fetch(`${API_URL}/candidate/${userName}/withdraw`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
